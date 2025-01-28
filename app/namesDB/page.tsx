@@ -28,6 +28,7 @@ export default function FruitDB() {
 
   return (
     <>
+      <h1>Landing Page muhehehe</h1>
       <Form />
       <pre>{JSON.stringify(names, null, 2)}</pre>
       {/* <pre>{JSON.stringify(fruits, null, 2)}</pre> */}
