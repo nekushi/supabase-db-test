@@ -11,10 +11,8 @@ import { redirect } from "next/navigation";
 export async function GET(request: NextRequest) {
   const supabase = await createClient();
   // const { data: fruitDB } = await supabase.from("fruitdb").select();
-  const { data: names } = await supabase
-    .from("namesDB")
-    .select()
-    .order("id", { ascending: true });
+  const { data: names } = await supabase.from("namesDB").select();
+  // .order("id", { ascending: true });
 
   return new Response(JSON.stringify(names as any), {
     headers: {
