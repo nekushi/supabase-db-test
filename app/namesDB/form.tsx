@@ -48,35 +48,16 @@ export default function Form({ type }: { type: string }) {
 
   // }
 
-  function getAction(t: string) {
-    switch (t) {
-      case "post":
-        return createPost
-      case "put":
-        return updateRow
-      case "delete":
-        return deleteRow
-      default:
-        throw new Error ("idk")
-    }
-  }
-
-  const [ data, action, pending ] = useActionState(updateRow, undefined);
-
-
+  const [ data, action, pending ] = useActionState(createPost, undefined);
 
   return (
     // <form action={action}>
     // <form method="POST" action={`/api?fruit=${fruitRef.current}&price=${priceRef.current}`}>
     <form action={action} className="w-64 border-2 border-black p-4 rounded-md flex flex-col space-y-4">
       <h1 className="text-3xl font bold">CRUD FORM</h1>
-      {type !== "post" && <input className="border-2 border-black indent-1" type="num" name="id" placeholder="Enter id" />}
-      {type !== "delete" && (
-        <>
-          <input className="border-2 border-black indent-1" type="text" name="name" placeholder={`Enter a name ${type === "put" ? "optional" : ""}`} />
-          <input className="border-2 border-black indent-1" type="text" name="age" placeholder={`Enter age ${type === "put" ? "optional" : ""}`} />
-        </>
-      )}
+      <input className="border-2 border-black indent-1" type="num" name="id" placeholder="Enter id" />
+      <input className="border-2 border-black indent-1" type="text" name="name" placeholder={`Enter a name ${type === "put" ? "optional" : ""}`} />
+      <input className="border-2 border-black indent-1" type="text" name="age" placeholder={`Enter age ${type === "put" ? "optional" : ""}`} />
       <input type="submit" value={type === "post" ? "Create Post" : type === "put" ? "Update Row" : "Delete Row"} disabled={pending} className={`${pending && "text-slate-500 cursor-pointer"} px-4 py-2 border-2 border-black`} />
       {/* {data?.message && <p className="text-red-500">ERROR: {data.message}</p>} */}
     </form>
