@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
   // const { data: fruitDB } = await supabase.from("fruitdb").select();
   const { data: names } = await supabase
     .from("namesDB")
-    .select("*")
+    .select()
     .order("id", { ascending: true });
 
   return new Response(JSON.stringify(names as any), {
