@@ -31,11 +31,11 @@ export default function FruitDB() {
     <>
       <h1>Landing Page muhehehe</h1>
       <Form type={formType} />
-      <div className='[&>*]:px-2 [&>*]:py-1 [&>*]:border-2 [&>*]:border-black space-x-8 my-4'>
+      {/* <div className='[&>*]:px-2 [&>*]:py-1 [&>*]:border-2 [&>*]:border-black space-x-8 my-4'>
         <button value={"POST"} onClick={() => {setFormType("post")}}>POST</button>
         <button value={"PUT"} onClick={() => {setFormType("put")}}>PUT</button>
         <button value={"DELETE"} onClick={() => {setFormType("delete")}}>DELETE</button>
-      </div>
+      </div> */}
       <pre>{JSON.stringify(names, null, 2)}</pre>
       {/* <pre>{JSON.stringify(fruits, null, 2)}</pre> */}
     </>
