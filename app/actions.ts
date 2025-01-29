@@ -155,3 +155,43 @@ export async function createPost(prevState: any, formData: FormData) {
 
   redirect("/namesDB");
 }
+
+export async function updateRow(prevState: any, formData: FormData) {
+  // get data from form
+  const id = formData.get("id");
+  const name = formData.get("name");
+  const age = formData.get("age");
+
+  // check if no error
+  // if (!name || !age) {
+  //   return { message: "Both fields are required. " };
+  // }
+
+  // call and update database
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("namesDB")
+    .update({ name, age })
+    .eq("id", id)
+    .select();
+
+  // redirect serves as to refresh the page
+  redirect("/namesDB");
+}
+
+export async function deleteRow(prevState: any, formData: FormData) {
+  // get id
+  const requestedID = formData.get("id");
+
+  // validate ID
+  if (!requestedID) {
+    return { message: "ID is required. " };
+  }
+
+  // access db
+  const supabase = await createClient();
+  const { data, error } = await supabase.from("namesDB").delete().eq({ id: 1 });
+
+  // refresh page
+  redirect("/namesDB");
+}
