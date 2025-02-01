@@ -158,7 +158,6 @@ export async function createPost(prevState: any, formData: FormData) {
 
 export async function updateRow(prevState: any, formData: FormData) {
   // get data from form
-  const id = formData.get("id");
   const name = formData.get("name");
   const age = formData.get("age");
 
@@ -190,7 +189,15 @@ export async function deleteRow(prevState: any, formData: FormData) {
 
   // access db
   const supabase = await createClient();
-  const { data, error } = await supabase.from("namesDB").delete().eq({ id: 1 });
+  // const { data, error } = await supabase
+  //   .from("namesDB")
+  //   .delete()
+  //   .eq({ id: 1 });
+
+  const { error } = await supabase
+    .from("namesDB")
+    .delete()
+    .eq("id", requestedID);
 
   // refresh page
   redirect("/namesDB");
